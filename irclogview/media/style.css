@@ -156,3 +156,9 @@ a:hover {
     color: #444;
 }
 
+.account {
+    float: right;
+    text-align: right;
+    font-size: 11pt;
+}
+

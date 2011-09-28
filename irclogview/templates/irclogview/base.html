@@ -6,6 +6,14 @@
 {% block extrahead %}{% endblock %}
 </head><body>
 
+<p class="account">
+{% if user.is_authenticated %}
+Halo <strong>{{ user }}</strong> | <a href="{% url irclogview_logout %}">Logout</a></p>
+{% else %}
+<a href="{% url irclogview_login %}">Login</a>
+{% endif %}
+</p>
+
 {% block page %}{% endblock %}
 
 </body></html>
