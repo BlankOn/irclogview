@@ -63,6 +63,7 @@ SECRET_KEY = 'f4aa3385ee3c8a5f0c74dcfb597692b4e9ba07a2181e532f490911822695190b'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
+    'django.template.loaders.eggs.Loader',
 #     'django.template.loaders.eggs.load_template_source',
 )
 
@@ -82,9 +83,19 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django_openid_auth',
     'south',
     'irclogview',
 )
+
+AUTHENTICATION_BACKENDS = (
+    'django_openid_auth.auth.OpenIDBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda o: '/~%s/' % o.username
+}
 
 ROOT_URLCONF = 'irclogview.urls'
 
@@ -93,4 +104,12 @@ IRCLOGVIEW_CHANNELS = (
 )
 IRCLOGVIEW_LOCKDIR = 'locks'
 IRCLOGVIEW_UPDATE_DELAY = 10
+
+OPENID_CREATE_USERS = True
+OPENID_UPDATE_DETAILS_FROM_SREG = True
+LOGIN_URL = '/+openid/login/'
+LOGIN_REDIRECT_URL = '/'
+OPENID_SSO_SERVER_URL = "https://aku.blankonlinux.or.id/o/"
+FULL_LOGOUT_URL = "https://aku.blankonlinux.or.id/logout/"
+OPENID_USE_AS_ADMIN_LOGIN = True
 

@@ -3,6 +3,8 @@ from datetime import datetime, timedelta
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
+from django.contrib import auth
+from django.core.urlresolvers import reverse
 
 from .models import Channel, Log, Bookmark
 from .utils import update_logs
@@ -88,4 +90,11 @@ def bookmark_show(request, name, path):
     if bookmark.line is not None:
         url = '%s#L%s' % (url, bookmark.line)
     return HttpResponseRedirect(url)
+
+def login(request):
+    return HttpResponseRedirect(reverse('openid-login'))
+
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('irclogview_index'))
 

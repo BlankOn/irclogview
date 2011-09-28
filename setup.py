@@ -12,6 +12,7 @@ setup(
     description = 'IRC Log viewer for Django',
     author = 'Fajran Iman Rusadi',
     packages = packages,
-    install_requires = ['setuptools', 'django-picklefield', 'South>0.6']
+    install_requires = ['setuptools', 'django-picklefield', 'South>0.6',
+                        'python-openid', 'django-openid-auth']
 )
 
