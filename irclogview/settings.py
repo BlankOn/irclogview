@@ -101,6 +101,7 @@ ROOT_URLCONF = 'irclogview.urls'
 
 IRCLOGVIEW_LOGDIR = 'logs'
 IRCLOGVIEW_CHANNELS = (
+    'blankon'
 )
 IRCLOGVIEW_LOCKDIR = 'locks'
 IRCLOGVIEW_UPDATE_DELAY = 10
