@@ -46,6 +46,9 @@ def build_calendar_table(year, month):
 
     return rows
 
+def shift(l, n):
+    return l[n:] + l[:n]
+
 @register.simple_tag
 def log_calendar(dates, today):
     table = build_calendar_table(today.year, today.month)
@@ -91,6 +94,7 @@ def log_calendar(dates, today):
     title = today.strftime('%B %Y')
     day_names = [datetime.date(2011, 5, day+1).strftime('%A')[0]
                  for day in range(7)]
+    day_names = shift(day_names, 1)
 
     link_prev = '<a href="%s"><img src="%simages/resultset_previous.png"/></a>' % \
                 (url_prev, settings.MEDIA_URL)
